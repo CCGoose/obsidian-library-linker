@@ -30,10 +30,11 @@ pnpm test            # lint, types, vitest
 pnpm install:vaults  # builds, then copies into every vault listed in the script
 ```
 
-Obsidian loads a plugin from inside the vault, and each vault keeps its own copy, so both
-are updated together or they drift apart. The vaults are listed at the top of
+Obsidian loads a plugin from inside the vault, and each vault keeps its own copy, so every
+vault is updated together or they drift apart. The vaults are listed at the top of
 `scripts/install-vaults.sh`; add one there rather than copying by hand. Settings are
-per-vault, so a newly added vault needs its language set again.
+per-vault, so a newly added vault needs its language set again. There is currently one
+vault, the top-level `JW` folder, with the old study notes as a subfolder.
 
 Then reload the plugin in each vault (Settings → Community plugins, toggle it off and on).
 

@@ -6,8 +6,7 @@
 set -euo pipefail
 
 VAULTS=(
-  "$HOME/My Drive/JW/personal_study"
-  "$HOME/My Drive/JW/Life_and_Ministry"
+  "$HOME/My Drive/JW"
 )
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
