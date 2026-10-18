@@ -94,6 +94,7 @@ commands:
   convertToJWLibraryLinks: 把選取範圍的連結轉成 JW Library 連結
   insertBibleQuotes: 為 JW Library 連結插入經文
   insertBibleQuoteAtCursor: 在游標處插入經文
+  openScripturePane: 在側邊欄開啟經文
 convertSuggester:
   emptyStateText: 選擇轉換類型
   options:
@@ -137,3 +138,12 @@ errors:
   offlineBibleVerseMissing: 在 {{language}} 的離線聖經中找不到或無法讀取所要的經文。
   offlineBibleLookupFailed: 離線聖經查閱失敗。
   onlineFallbackDisabled: 已停用改用線上的功能。
+scripturePane:
+  title: 經文
+  empty: 用 Cmd/Ctrl 加點擊開啟 JW Library 連結，經文會顯示在這裡。
+  loading: 載入中…
+  notFound: 找不到這個引用的經文
+  fetchFailed: 無法取得經文，請再試一次
+  copy: 複製經文
+  copied: 經文已複製
+  openInLibrary: 在 JW Library 開啟

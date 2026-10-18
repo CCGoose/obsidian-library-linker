@@ -94,6 +94,7 @@ commands:
   convertToJWLibraryLinks: Pyangulula amalinki yasalwa ku malinki ya JW Library
   insertBibleQuotes: Bikapo amashiwi ya Baibolo pa malinki ya JW Library
   insertBibleQuoteAtCursor: Bikapo amashiwi ya Baibolo apo kasanika nshiba
+  openScripturePane: Open scripture in the side pane
 convertSuggester:
   emptyStateText: Salapo umusango wa kupyangulula
   options:
@@ -137,3 +138,12 @@ errors:
   offlineBibleVerseMissing: 'Ifikomo fyalombwa tafyabako nelyo te kufibelenga mu Baibolo wa kunse kwa intaneti uwa {{language}}.'
   offlineBibleLookupFailed: Ukufwaya muli Baibolo wa kunse kwa intaneti kwalifilwa.
   onlineFallbackDisabled: Ukufwaya pa intaneti kwaeshiwa.
+scripturePane:
+  title: Scripture
+  empty: Open a JW Library link with Cmd/Ctrl+click to read it here.
+  loading: Loading...
+  notFound: No Bible text found for this reference
+  fetchFailed: Could not fetch Bible text — please try again
+  copy: Copy text
+  copied: Scripture copied
+  openInLibrary: Open in JW Library

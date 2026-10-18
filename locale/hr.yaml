@@ -94,6 +94,7 @@ commands:
   convertToJWLibraryLinks: Pretvori linkove u odabiru u JW Library linkove
   insertBibleQuotes: Umetni biblijske citate za JW Library linkove
   insertBibleQuoteAtCursor: Umetni biblijski citat na položaj kursora
+  openScripturePane: Open scripture in the side pane
 convertSuggester:
   emptyStateText: Odaberite vrstu pretvorbe
   options:
@@ -137,3 +138,12 @@ errors:
   offlineBibleVerseMissing: Traženi retci nedostaju ili su nečitljivi u izvanmrežnoj Bibliji za {{language}}.
   offlineBibleLookupFailed: Pretraživanje izvanmrežne Biblije nije uspjelo.
   onlineFallbackDisabled: Mrežna zamjena je onemogućena.
+scripturePane:
+  title: Scripture
+  empty: Open a JW Library link with Cmd/Ctrl+click to read it here.
+  loading: Loading...
+  notFound: No Bible text found for this reference
+  fetchFailed: Could not fetch Bible text — please try again
+  copy: Copy text
+  copied: Scripture copied
+  openInLibrary: Open in JW Library

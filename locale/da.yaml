@@ -94,6 +94,7 @@ commands:
   convertToJWLibraryLinks: Konvertér links i markeringen til JW Library-links
   insertBibleQuotes: Indsæt bibelcitater for JW Library-links
   insertBibleQuoteAtCursor: Indsæt bibelcitat ved markøren
+  openScripturePane: Open scripture in the side pane
 convertSuggester:
   emptyStateText: Vælg en konverteringstype
   options:
@@ -137,3 +138,12 @@ errors:
   offlineBibleVerseMissing: De ønskede vers mangler eller kan ikke læses i offline-bibelen for {{language}}.
   offlineBibleLookupFailed: Offline-opslag i bibelen mislykkedes.
   onlineFallbackDisabled: Online reserve er deaktiveret.
+scripturePane:
+  title: Scripture
+  empty: Open a JW Library link with Cmd/Ctrl+click to read it here.
+  loading: Loading...
+  notFound: No Bible text found for this reference
+  fetchFailed: Could not fetch Bible text — please try again
+  copy: Copy text
+  copied: Scripture copied
+  openInLibrary: Open in JW Library

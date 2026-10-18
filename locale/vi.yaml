@@ -94,6 +94,7 @@ commands:
   convertToJWLibraryLinks: Chuyển các liên kết trong vùng chọn sang liên kết JW Library
   insertBibleQuotes: Chèn câu trích Kinh Thánh cho các liên kết JW Library
   insertBibleQuoteAtCursor: Chèn câu trích Kinh Thánh tại vị trí con trỏ
+  openScripturePane: Open scripture in the side pane
 convertSuggester:
   emptyStateText: Chọn loại chuyển đổi
   options:
@@ -137,3 +138,12 @@ errors:
   offlineBibleVerseMissing: Các câu được yêu cầu bị thiếu hoặc không thể đọc được trong Kinh Thánh ngoại tuyến cho {{language}}.
   offlineBibleLookupFailed: Tra cứu Kinh Thánh ngoại tuyến thất bại.
   onlineFallbackDisabled: Phương án trực tuyến dự phòng đã bị tắt.
+scripturePane:
+  title: Scripture
+  empty: Open a JW Library link with Cmd/Ctrl+click to read it here.
+  loading: Loading...
+  notFound: No Bible text found for this reference
+  fetchFailed: Could not fetch Bible text — please try again
+  copy: Copy text
+  copied: Scripture copied
+  openInLibrary: Open in JW Library

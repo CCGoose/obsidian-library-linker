@@ -94,6 +94,7 @@ commands:
   convertToJWLibraryLinks: A kijelölésben lévő hivatkozások átalakítása JW Library-hivatkozásokká
   insertBibleQuotes: Bibliai idézetek beszúrása a JW Library-hivatkozásokhoz
   insertBibleQuoteAtCursor: Bibliai idézet beszúrása a kurzorhoz
+  openScripturePane: Open scripture in the side pane
 convertSuggester:
   emptyStateText: Válassz átalakítási típust
   options:
@@ -137,3 +138,12 @@ errors:
   offlineBibleVerseMissing: A kért versek hiányoznak vagy nem olvashatók az offline Bibliában ({{language}}).
   offlineBibleLookupFailed: Az offline Biblia keresése nem sikerült.
   onlineFallbackDisabled: Az online tartalék le van tiltva.
+scripturePane:
+  title: Scripture
+  empty: Open a JW Library link with Cmd/Ctrl+click to read it here.
+  loading: Loading...
+  notFound: No Bible text found for this reference
+  fetchFailed: Could not fetch Bible text — please try again
+  copy: Copy text
+  copied: Scripture copied
+  openInLibrary: Open in JW Library

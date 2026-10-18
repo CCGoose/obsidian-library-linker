@@ -94,6 +94,7 @@ commands:
   convertToJWLibraryLinks: Převést odkazy ve výběru na JW Library odkazy
   insertBibleQuotes: Vložit biblické citace pro JW Library odkazy
   insertBibleQuoteAtCursor: Vložit biblickou citaci na pozici kurzoru
+  openScripturePane: Open scripture in the side pane
 convertSuggester:
   emptyStateText: Vyberte typ převodu
   options:
@@ -137,3 +138,12 @@ errors:
   offlineBibleVerseMissing: Požadované verše v offline Bibli pro jazyk {{language}} chybí nebo je nelze přečíst.
   offlineBibleLookupFailed: Vyhledání v offline Bibli se nezdařilo.
   onlineFallbackDisabled: Online záloha je vypnuta.
+scripturePane:
+  title: Scripture
+  empty: Open a JW Library link with Cmd/Ctrl+click to read it here.
+  loading: Loading...
+  notFound: No Bible text found for this reference
+  fetchFailed: Could not fetch Bible text — please try again
+  copy: Copy text
+  copied: Scripture copied
+  openInLibrary: Open in JW Library

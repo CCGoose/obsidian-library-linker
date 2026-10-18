@@ -94,6 +94,7 @@ commands:
   convertToJWLibraryLinks: I-convert ang mga link sa napili tungo sa mga link ng JW Library
   insertBibleQuotes: Ipasok ang mga sipi sa Bibliya para sa mga link ng JW Library
   insertBibleQuoteAtCursor: Ipasok ang sipi sa Bibliya sa lokasyon ng cursor
+  openScripturePane: Open scripture in the side pane
 convertSuggester:
   emptyStateText: Pumili ng uri ng conversion
   options:
@@ -137,3 +138,12 @@ errors:
   offlineBibleVerseMissing: 'Ang mga hinihinging talata ay wala o hindi nababasa sa offline na Bibliya para sa {{language}}.'
   offlineBibleLookupFailed: Nabigo ang paghahanap sa offline na Bibliya.
   onlineFallbackDisabled: Naka-disable ang online na fallback.
+scripturePane:
+  title: Scripture
+  empty: Open a JW Library link with Cmd/Ctrl+click to read it here.
+  loading: Loading...
+  notFound: No Bible text found for this reference
+  fetchFailed: Could not fetch Bible text — please try again
+  copy: Copy text
+  copied: Scripture copied
+  openInLibrary: Open in JW Library

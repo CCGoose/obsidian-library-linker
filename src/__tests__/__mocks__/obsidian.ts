@@ -188,6 +188,24 @@ export class Component {
   onunload() {}
 }
 
+export class WorkspaceLeaf {}
+
+export class ItemView extends Component {
+  containerEl = globalThis.document?.createElement('div');
+  contentEl = globalThis.document?.createElement('div');
+  constructor(public leaf: WorkspaceLeaf) {
+    super();
+  }
+  getViewType() {
+    return '';
+  }
+  getDisplayText() {
+    return '';
+  }
+}
+
+export const setIcon = vi.fn();
+
 export class MarkdownRenderer {
   static render(
     app: App,

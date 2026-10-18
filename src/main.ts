@@ -1,6 +1,6 @@
 import { Editor, Notice, Plugin, Menu } from 'obsidian';
 import { ConversionType, convertLinks } from '@/utils/convertLinks';
-import type { LinkReplacerSettings, LinkStyles, BibleQuoteFormat } from '@/types';
+import type { BibleReference, LinkReplacerSettings, LinkStyles, BibleQuoteFormat } from '@/types';
 import { BIBLE_QUOTE_TEMPLATES } from '@/types';
 import { TranslationService } from '@/services/TranslationService';
 import { VaultOfflineBibleRepository } from '@/services/VaultOfflineBibleRepository';
@@ -16,6 +16,8 @@ import { BibleReferenceSuggester } from '@/BibleReferenceSuggester';
 import { linkUnlinkedBibleReferences } from '@/utils/linkUnlinkedBibleReferences';
 import { ConvertSuggester } from '@/ConvertSuggester';
 import { insertAllBibleQuotes, insertBibleQuoteAtCursor } from '@/utils/insertBibleQuotes';
+import { findJWLibraryLinksInLine, parseJWLibraryLink } from '@/utils/findJWLibraryLinks';
+import { ScripturePaneView, SCRIPTURE_PANE_VIEW_TYPE } from '@/views/ScripturePaneView';
 import { logger } from '@/utils/logger';
 import { getBookLanguage } from '@/utils/signLanguage';
 import { ContentSelection } from '@/utils/findJWLibraryLinks';
@@ -245,6 +247,23 @@ export default class JWLibraryLinkerPlugin extends Plugin {
       },
     });
 
+    this.registerView(SCRIPTURE_PANE_VIEW_TYPE, (leaf) => new ScripturePaneView(leaf, this));
+
+    this.addCommand({
+      id: 'open-scripture-pane',
+      name: this.t('commands.openScripturePane'),
+      icon: 'book-open',
+      editorCallback: (editor: Editor) => {
+        const cursor = editor.getCursor();
+        const links = findJWLibraryLinksInLine(editor.getLine(cursor.line), cursor.line);
+        if (links.length === 0) {
+          new Notice(this.t('notices.noBibleLinkAtCursor'));
+          return;
+        }
+        void this.openScripturePane(links[0].reference);
+      },
+    });
+
     this.bibleSuggester = new BibleReferenceSuggester(this);
     this.registerEditorSuggest(this.bibleSuggester);
 
@@ -290,7 +309,42 @@ export default class JWLibraryLinkerPlugin extends Plugin {
       }),
     );
 
+    // Cmd/Ctrl+click on a JW Library link reads it in the side pane instead of
+    // handing it to JW Library, which a plain click still does.
+    this.registerDomEvent(document, 'click', (event: MouseEvent) => {
+      if (!event.metaKey && !event.ctrlKey) return;
+
+      const target = event.target as HTMLElement | null;
+      const anchor = target?.closest('a');
+      const href = anchor?.getAttribute('href');
+      if (!href?.startsWith('jwlibrary:///finder?bible=')) return;
+
+      const reference = parseJWLibraryLink(href);
+      if (!reference) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+      void this.openScripturePane(reference);
+    });
+
     logger.log('Plugin loaded');
+  }
+
+  async openScripturePane(reference: BibleReference): Promise<void> {
+    const { workspace } = this.app;
+    let leaf = workspace.getLeavesOfType(SCRIPTURE_PANE_VIEW_TYPE)[0];
+
+    if (!leaf) {
+      leaf = workspace.getRightLeaf(false) ?? workspace.getLeaf(true);
+      await leaf.setViewState({ type: SCRIPTURE_PANE_VIEW_TYPE, active: true });
+    }
+
+    await workspace.revealLeaf(leaf);
+
+    const view = leaf.view;
+    if (view instanceof ScripturePaneView) {
+      await view.showReference(reference);
+    }
   }
 
   /**

@@ -74,6 +74,7 @@ type Translation = {
     convertToJWLibraryLinks: string;
     insertBibleQuotes: string;
     insertBibleQuoteAtCursor: string;
+    openScripturePane: string;
   };
   convertSuggester: {
     emptyStateText: string;
@@ -112,6 +113,16 @@ type Translation = {
     invalidVerseFormat: string;
     invalidReferenceFormat: string;
     unsupportedLanguage: string;
+  };
+  scripturePane: {
+    title: string;
+    empty: string;
+    loading: string;
+    notFound: string;
+    fetchFailed: string;
+    copy: string;
+    copied: string;
+    openInLibrary: string;
   };
 };
 

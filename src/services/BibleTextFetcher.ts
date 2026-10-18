@@ -22,6 +22,9 @@ interface WebviewElement extends HTMLElement {
 interface WOLLangConfig {
   region: string;
   lp: string;
+  // WOL's own locale segment, when it differs from the locale stored for the language
+  // (Traditional Chinese is zh-TW in Obsidian but cmn-Hant on WOL).
+  locale?: string;
 }
 
 // TODO: move region/lp into LanguageInfo (languages.json) so adding a language requires one less change
@@ -36,6 +39,7 @@ const WOL_LANG_CONFIG: Record<string, WOLLangConfig> = {
   TPO: { region: 'r296', lp: 'lp-tpo' },
   C: { region: 'r19', lp: 'lp-c' },
   VT: { region: 'r47', lp: 'lp-vt' },
+  CH: { region: 'r24', lp: 'lp-ch', locale: 'cmn-Hant' },
 };
 
 export class BibleTextFetcher {
@@ -313,11 +317,75 @@ export class BibleTextFetcher {
 
   static buildWOLUrl(book: number, chapter: number, language: Language): string {
     const config = WOL_LANG_CONFIG[language];
-    const locale = getLocaleFromLanguage(language);
     if (!config) {
       throw new Error(`Unsupported language for WOL: ${language}`);
     }
+    const locale = config.locale ?? getLocaleFromLanguage(language);
     return `${this.WOL_BASE}/${locale}/wol/b/${config.region}/${config.lp}/nwt/${book}/${chapter}`;
+  }
+
+  /**
+   * Fetches the verses of a reference as WOL's own markup, keeping the footnote and
+   * cross-reference markers that the plain-text extraction strips out. The scripture
+   * pane renders these so the markers stay clickable.
+   */
+  static async fetchVerseElements(
+    reference: BibleReference,
+    language: Language,
+  ): Promise<{ verse: number; html: string }[]> {
+    const { book, chapter, verseRanges } = reference;
+    if (!verseRanges || verseRanges.length === 0) {
+      return [];
+    }
+
+    const html = await this.fetchChapterHtml(book, chapter, language);
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    const isWOL = doc.querySelector(`[id^="v${book}-${chapter}-"]`) !== null;
+
+    const verses: { verse: number; html: string }[] = [];
+
+    for (const range of verseRanges) {
+      for (let v = range.start; v <= range.end; v++) {
+        const elements = isWOL
+          ? Array.from(doc.querySelectorAll(`span[id^="v${book}-${chapter}-${v}-"]`)).sort(
+              (a, b) => (Number(a.id.split('-').pop()) || 0) - (Number(b.id.split('-').pop()) || 0),
+            )
+          : [doc.getElementById(`v${book}${padChapter(chapter)}${padVerse(v)}`)].filter(
+              (el): el is HTMLElement => el !== null,
+            );
+
+        const parts = elements.map((el) => {
+          const clone = el.cloneNode(true) as HTMLElement;
+          clone.querySelectorAll('a.vl').forEach((node) => node.remove());
+          clone.querySelectorAll('.chapterNum, .verseNum').forEach((node) => node.remove());
+          return clone.innerHTML;
+        });
+
+        const combined = parts.join('').trim();
+        if (combined) {
+          verses.push({ verse: v, html: combined });
+        }
+      }
+    }
+
+    return verses;
+  }
+
+  /**
+   * Fetches the body of a footnote or cross-reference from the href WOL puts on its
+   * markers. The paths are site-relative, so they are resolved against WOL_BASE.
+   */
+  static async fetchNote(path: string): Promise<string> {
+    const url = path.startsWith('http') ? path : `${this.WOL_BASE}${path}`;
+    if (!url.startsWith(`${this.WOL_BASE}/`)) {
+      throw new Error(`Refusing to fetch a note from outside WOL: ${url}`);
+    }
+
+    await this.throttle();
+    const html = await this.fetchHtml(url);
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    const body = doc.querySelector('article') ?? doc.body;
+    return body?.innerHTML ?? '';
   }
 
   /**

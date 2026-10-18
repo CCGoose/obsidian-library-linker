@@ -94,6 +94,7 @@ commands:
   convertToJWLibraryLinks: Конвертировать ссылки в выделении в ссылки JW Library
   insertBibleQuotes: Вставить библейские цитаты для ссылок JW Library
   insertBibleQuoteAtCursor: Вставить библейскую цитату в позиции курсора
+  openScripturePane: Open scripture in the side pane
 convertSuggester:
   emptyStateText: Выберите тип конвертации
   options:
@@ -137,3 +138,12 @@ errors:
   offlineBibleVerseMissing: 'Запрошенные стихи отсутствуют или нечитаемы в офлайн-Библии для языка {{language}}.'
   offlineBibleLookupFailed: Ошибка поиска в офлайн-Библии.
   onlineFallbackDisabled: Онлайн-резерв отключён.
+scripturePane:
+  title: Scripture
+  empty: Open a JW Library link with Cmd/Ctrl+click to read it here.
+  loading: Loading...
+  notFound: No Bible text found for this reference
+  fetchFailed: Could not fetch Bible text — please try again
+  copy: Copy text
+  copied: Scripture copied
+  openInLibrary: Open in JW Library

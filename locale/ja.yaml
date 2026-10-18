@@ -94,6 +94,7 @@ commands:
   convertToJWLibraryLinks: 選択範囲のリンクをJW Libraryリンクに変換する
   insertBibleQuotes: JW Libraryリンクの聖書引用を挿入する
   insertBibleQuoteAtCursor: カーソル位置に聖書引用を挿入する
+  openScripturePane: Open scripture in the side pane
 convertSuggester:
   emptyStateText: 変換タイプを選択してください
   options:
@@ -137,3 +138,12 @@ errors:
   offlineBibleVerseMissing: '{{language}}のオフライン聖書では、要求された節が見つからないか読み取れません。'
   offlineBibleLookupFailed: オフライン聖書の検索に失敗しました。
   onlineFallbackDisabled: オンラインフォールバックは無効です。
+scripturePane:
+  title: Scripture
+  empty: Open a JW Library link with Cmd/Ctrl+click to read it here.
+  loading: Loading...
+  notFound: No Bible text found for this reference
+  fetchFailed: Could not fetch Bible text — please try again
+  copy: Copy text
+  copied: Scripture copied
+  openInLibrary: Open in JW Library

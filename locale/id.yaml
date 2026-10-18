@@ -94,6 +94,7 @@ commands:
   convertToJWLibraryLinks: Ubah tautan terpilih menjadi tautan JW Library
   insertBibleQuotes: Masukkan kutipan Alkitab untuk tautan JW Library
   insertBibleQuoteAtCursor: Masukkan kutipan Alkitab di posisi kursor
+  openScripturePane: Open scripture in the side pane
 convertSuggester:
   emptyStateText: Pilih jenis konversi
   options:
@@ -137,3 +138,12 @@ errors:
   offlineBibleVerseMissing: Ayat yang diminta tidak ada atau tidak dapat dibaca di Alkitab offline untuk {{language}}.
   offlineBibleLookupFailed: Pencarian Alkitab offline gagal.
   onlineFallbackDisabled: Cadangan online sedang dinonaktifkan.
+scripturePane:
+  title: Scripture
+  empty: Open a JW Library link with Cmd/Ctrl+click to read it here.
+  loading: Loading...
+  notFound: No Bible text found for this reference
+  fetchFailed: Could not fetch Bible text — please try again
+  copy: Copy text
+  copied: Scripture copied
+  openInLibrary: Open in JW Library

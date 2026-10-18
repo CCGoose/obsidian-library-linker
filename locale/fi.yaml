@@ -94,6 +94,7 @@ commands:
   convertToJWLibraryLinks: Muunna valitun tekstin linkit JW-kirjastolinkkiksi
   insertBibleQuotes: Lisää raamatunlainaukset JW-kirjastolinkeille
   insertBibleQuoteAtCursor: Lisää raamatunlainaus kursoriin
+  openScripturePane: Open scripture in the side pane
 convertSuggester:
   emptyStateText: Valitse muunnostyyppi
   options:
@@ -137,3 +138,12 @@ errors:
   offlineBibleVerseMissing: Pyydetyt jakeet puuttuvat tai ovat lukukelvottomia offline-Raamatussa kielelle {{language}}.
   offlineBibleLookupFailed: Offline-Raamatun haku epäonnistui.
   onlineFallbackDisabled: Online-vaihtoehto on poistettu käytöstä.
+scripturePane:
+  title: Scripture
+  empty: Open a JW Library link with Cmd/Ctrl+click to read it here.
+  loading: Loading...
+  notFound: No Bible text found for this reference
+  fetchFailed: Could not fetch Bible text — please try again
+  copy: Copy text
+  copied: Scripture copied
+  openInLibrary: Open in JW Library

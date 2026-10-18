@@ -94,6 +94,7 @@ commands:
   convertToJWLibraryLinks: Converter hiperligações selecionadas em hiperligações da JW Library links
   insertBibleQuotes: Inserir citação bíblica para hiperligações da JW Library
   insertBibleQuoteAtCursor: Inserir citação bíblica no cursor
+  openScripturePane: Open scripture in the side pane
 convertSuggester:
   emptyStateText: Selecione um tipo de conversão
   options:
@@ -137,3 +138,12 @@ errors:
   offlineBibleVerseMissing: Os versículos solicitados estão ausentes ou ilegíveis na Bíblia offline para {{language}}.
   offlineBibleLookupFailed: A pesquisa na Bíblia offline falhou.
   onlineFallbackDisabled: A alternativa online está desativada.
+scripturePane:
+  title: Scripture
+  empty: Open a JW Library link with Cmd/Ctrl+click to read it here.
+  loading: Loading...
+  notFound: No Bible text found for this reference
+  fetchFailed: Could not fetch Bible text — please try again
+  copy: Copy text
+  copied: Scripture copied
+  openInLibrary: Open in JW Library

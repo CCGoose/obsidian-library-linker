@@ -94,6 +94,7 @@ commands:
   convertToJWLibraryLinks: 선택 항목의 링크를 JW Library 링크로 변환
   insertBibleQuotes: JW Library 링크에 성경 인용문 삽입
   insertBibleQuoteAtCursor: 커서에 성경 인용문 삽입
+  openScripturePane: Open scripture in the side pane
 convertSuggester:
   emptyStateText: 변환 유형을 선택하세요
   options:
@@ -137,3 +138,12 @@ errors:
   offlineBibleVerseMissing: '{{language}}용 오프라인 성경에서 요청한 절을 찾을 수 없거나 읽을 수 없습니다.'
   offlineBibleLookupFailed: 오프라인 성경 검색에 실패했습니다.
   onlineFallbackDisabled: 온라인 대체가 비활성화되어 있습니다.
+scripturePane:
+  title: Scripture
+  empty: Open a JW Library link with Cmd/Ctrl+click to read it here.
+  loading: Loading...
+  notFound: No Bible text found for this reference
+  fetchFailed: Could not fetch Bible text — please try again
+  copy: Copy text
+  copied: Scripture copied
+  openInLibrary: Open in JW Library
