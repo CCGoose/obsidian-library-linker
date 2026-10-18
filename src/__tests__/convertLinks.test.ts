@@ -239,6 +239,35 @@ describe('convertLinks', () => {
       `;
       expect(convertLinks(input, 'all', settings)).toBe(expected);
     });
+
+    test('converts WOL scripture links using the link text, keeping that text', () => {
+      const input = '[John 3:16](https://wol.jw.org/en/wol/bc/r1/lp-e/202026258/3/0)';
+      expect(convertLinks(input, 'bible', TEST_DEFAULT_SETTINGS)).toBe(
+        '[John 3:16](jwlibrary:///finder?bible=43003016&wtlocale=E)',
+      );
+    });
+
+    test('reformats the text of a WOL scripture link when settings ask for it', () => {
+      const settings: LinkReplacerSettings = {
+        ...TEST_DEFAULT_SETTINGS,
+        updatedLinkStructure: 'usePluginSettings',
+        bookLength: 'short',
+      };
+      const input = '[John 3:16](https://wol.jw.org/en/wol/bc/r1/lp-e/202026258/3/0)';
+      expect(convertLinks(input, 'bible', settings)).toBe(
+        '[Joh 3:16](jwlibrary:///finder?bible=43003016&wtlocale=E)',
+      );
+    });
+
+    test('leaves WOL publication links alone', () => {
+      const input = '[Insight, Cyrus](https://wol.jw.org/en/wol/pc/r1/lp-e/202026082/1/0)';
+      expect(convertLinks(input, 'all', TEST_DEFAULT_SETTINGS)).toBe(input);
+    });
+
+    test('leaves a WOL scripture link whose text is not a reference', () => {
+      const input = '[see the citations](https://wol.jw.org/en/wol/bc/r1/lp-e/202026258/3/0)';
+      expect(convertLinks(input, 'bible', TEST_DEFAULT_SETTINGS)).toBe(input);
+    });
   });
 });
 
