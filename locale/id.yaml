@@ -95,6 +95,11 @@ commands:
   insertBibleQuotes: Masukkan kutipan Alkitab untuk tautan JW Library
   insertBibleQuoteAtCursor: Masukkan kutipan Alkitab di posisi kursor
   openScripturePane: Open scripture in the side pane
+  parseDocument: Parse document into a reference table
+  parseSelection: Parse selection into a reference table
+  reformatLong: Reformat references to full book names
+  reformatMedium: Reformat references to standard book names
+  reformatShort: Reformat references to official book names
 convertSuggester:
   emptyStateText: Pilih jenis konversi
   options:
@@ -120,6 +125,7 @@ notices:
   offlineBibleAlreadyInstalled: Alkitab offline untuk {{language}} sudah terinstal. Silakan hapus terlebih dahulu untuk mengimpor kembali.
   offlineBibleImportFailed: Gagal mengimpor EPUB Alkitab offline
   offlineBibleOpenFolderFailed: Gagal membuka folder Alkitab offline
+  reformattedReferences: 'Reformatted {{count}} references'
 suggestions:
   createLink: 'Buat Tautan: {{text}}'
   createLinks: 'Buat Beberapa Tautan: {{text}}'
@@ -147,3 +153,20 @@ scripturePane:
   copy: Copy text
   copied: Scripture copied
   openInLibrary: Open in JW Library
+referenceTable:
+  title: References
+  search: Search
+  uniqueOnly: Hide duplicates
+  copy: Copy as TSV
+  copied: Table copied
+  count: '{{count}} references'
+  empty: Nothing matches the search
+  columns:
+    original: Original
+    long: Full
+    medium: Standard
+    short: Official
+    startBcv: Start BCV
+    endBcv: End BCV
+    chapter: Chapter
+    verses: Verses

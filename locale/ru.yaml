@@ -95,6 +95,11 @@ commands:
   insertBibleQuotes: Вставить библейские цитаты для ссылок JW Library
   insertBibleQuoteAtCursor: Вставить библейскую цитату в позиции курсора
   openScripturePane: Open scripture in the side pane
+  parseDocument: Parse document into a reference table
+  parseSelection: Parse selection into a reference table
+  reformatLong: Reformat references to full book names
+  reformatMedium: Reformat references to standard book names
+  reformatShort: Reformat references to official book names
 convertSuggester:
   emptyStateText: Выберите тип конвертации
   options:
@@ -120,6 +125,7 @@ notices:
   offlineBibleAlreadyInstalled: 'Офлайн-Библия для языка {{language}} уже установлена. Удалите её, чтобы импортировать заново.'
   offlineBibleImportFailed: Не удалось импортировать EPUB офлайн-Библии
   offlineBibleOpenFolderFailed: Не удалось открыть папку офлайн-Библии
+  reformattedReferences: 'Reformatted {{count}} references'
 suggestions:
   createLink: 'Создать ссылку: {{text}}'
   createLinks: 'Создать ссылки: {{text}}'
@@ -147,3 +153,20 @@ scripturePane:
   copy: Copy text
   copied: Scripture copied
   openInLibrary: Open in JW Library
+referenceTable:
+  title: References
+  search: Search
+  uniqueOnly: Hide duplicates
+  copy: Copy as TSV
+  copied: Table copied
+  count: '{{count}} references'
+  empty: Nothing matches the search
+  columns:
+    original: Original
+    long: Full
+    medium: Standard
+    short: Official
+    startBcv: Start BCV
+    endBcv: End BCV
+    chapter: Chapter
+    verses: Verses

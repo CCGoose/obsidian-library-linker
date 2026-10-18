@@ -95,6 +95,11 @@ commands:
   insertBibleQuotes: Chèn câu trích Kinh Thánh cho các liên kết JW Library
   insertBibleQuoteAtCursor: Chèn câu trích Kinh Thánh tại vị trí con trỏ
   openScripturePane: Open scripture in the side pane
+  parseDocument: Parse document into a reference table
+  parseSelection: Parse selection into a reference table
+  reformatLong: Reformat references to full book names
+  reformatMedium: Reformat references to standard book names
+  reformatShort: Reformat references to official book names
 convertSuggester:
   emptyStateText: Chọn loại chuyển đổi
   options:
@@ -120,6 +125,7 @@ notices:
   offlineBibleAlreadyInstalled: Đã có Kinh Thánh ngoại tuyến được cài đặt cho {{language}}. Hãy xóa nó trước để nhập lại.
   offlineBibleImportFailed: Không thể nhập tệp EPUB Kinh Thánh ngoại tuyến
   offlineBibleOpenFolderFailed: Không thể mở thư mục Kinh Thánh ngoại tuyến
+  reformattedReferences: 'Reformatted {{count}} references'
 suggestions:
   createLink: 'Tạo liên kết: {{text}}'
   createLinks: 'Tạo các liên kết: {{text}}'
@@ -147,3 +153,20 @@ scripturePane:
   copy: Copy text
   copied: Scripture copied
   openInLibrary: Open in JW Library
+referenceTable:
+  title: References
+  search: Search
+  uniqueOnly: Hide duplicates
+  copy: Copy as TSV
+  copied: Table copied
+  count: '{{count}} references'
+  empty: Nothing matches the search
+  columns:
+    original: Original
+    long: Full
+    medium: Standard
+    short: Official
+    startBcv: Start BCV
+    endBcv: End BCV
+    chapter: Chapter
+    verses: Verses

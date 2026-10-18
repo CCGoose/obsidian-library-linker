@@ -95,6 +95,11 @@ commands:
   insertBibleQuotes: Lisää raamatunlainaukset JW-kirjastolinkeille
   insertBibleQuoteAtCursor: Lisää raamatunlainaus kursoriin
   openScripturePane: Open scripture in the side pane
+  parseDocument: Parse document into a reference table
+  parseSelection: Parse selection into a reference table
+  reformatLong: Reformat references to full book names
+  reformatMedium: Reformat references to standard book names
+  reformatShort: Reformat references to official book names
 convertSuggester:
   emptyStateText: Valitse muunnostyyppi
   options:
@@ -120,6 +125,7 @@ notices:
   offlineBibleAlreadyInstalled: Kielelle {{language}} on jo asennettu offline-Raamattu. Poista se ensin tuodaksesi uudelleen.
   offlineBibleImportFailed: Raamattu-EPUBin tuonti epäonnistui
   offlineBibleOpenFolderFailed: Offline-Raamatun kansiota ei voitu avata
+  reformattedReferences: 'Reformatted {{count}} references'
 suggestions:
   createLink: 'Luo linkki: {{text}}'
   createLinks: 'Luo linkit: {{text}}'
@@ -147,3 +153,20 @@ scripturePane:
   copy: Copy text
   copied: Scripture copied
   openInLibrary: Open in JW Library
+referenceTable:
+  title: References
+  search: Search
+  uniqueOnly: Hide duplicates
+  copy: Copy as TSV
+  copied: Table copied
+  count: '{{count}} references'
+  empty: Nothing matches the search
+  columns:
+    original: Original
+    long: Full
+    medium: Standard
+    short: Official
+    startBcv: Start BCV
+    endBcv: End BCV
+    chapter: Chapter
+    verses: Verses

@@ -95,6 +95,11 @@ commands:
   insertBibleQuotes: Ipasok ang mga sipi sa Bibliya para sa mga link ng JW Library
   insertBibleQuoteAtCursor: Ipasok ang sipi sa Bibliya sa lokasyon ng cursor
   openScripturePane: Open scripture in the side pane
+  parseDocument: Parse document into a reference table
+  parseSelection: Parse selection into a reference table
+  reformatLong: Reformat references to full book names
+  reformatMedium: Reformat references to standard book names
+  reformatShort: Reformat references to official book names
 convertSuggester:
   emptyStateText: Pumili ng uri ng conversion
   options:
@@ -120,6 +125,7 @@ notices:
   offlineBibleAlreadyInstalled: 'May naka-install nang offline na Bibliya para sa {{language}}. Alisin muna ito upang muling mag-import.'
   offlineBibleImportFailed: Nabigo ang pag-import ng offline na Bible EPUB
   offlineBibleOpenFolderFailed: Hindi mabuksan ang folder ng offline na Bibliya
+  reformattedReferences: 'Reformatted {{count}} references'
 suggestions:
   createLink: 'Gumawa ng link: {{text}}'
   createLinks: 'Gumawa ng mga link: {{text}}'
@@ -147,3 +153,20 @@ scripturePane:
   copy: Copy text
   copied: Scripture copied
   openInLibrary: Open in JW Library
+referenceTable:
+  title: References
+  search: Search
+  uniqueOnly: Hide duplicates
+  copy: Copy as TSV
+  copied: Table copied
+  count: '{{count}} references'
+  empty: Nothing matches the search
+  columns:
+    original: Original
+    long: Full
+    medium: Standard
+    short: Official
+    startBcv: Start BCV
+    endBcv: End BCV
+    chapter: Chapter
+    verses: Verses

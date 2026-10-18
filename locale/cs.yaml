@@ -95,6 +95,11 @@ commands:
   insertBibleQuotes: Vložit biblické citace pro JW Library odkazy
   insertBibleQuoteAtCursor: Vložit biblickou citaci na pozici kurzoru
   openScripturePane: Open scripture in the side pane
+  parseDocument: Parse document into a reference table
+  parseSelection: Parse selection into a reference table
+  reformatLong: Reformat references to full book names
+  reformatMedium: Reformat references to standard book names
+  reformatShort: Reformat references to official book names
 convertSuggester:
   emptyStateText: Vyberte typ převodu
   options:
@@ -120,6 +125,7 @@ notices:
   offlineBibleAlreadyInstalled: Offline Bible pro jazyk {{language}} je již nainstalována. Pro opětovný import ji nejprve odstraňte.
   offlineBibleImportFailed: Import offline biblického EPUB se nezdařil
   offlineBibleOpenFolderFailed: Nepodařilo se otevřít složku offline Bible
+  reformattedReferences: 'Reformatted {{count}} references'
 suggestions:
   createLink: 'Vytvořit odkaz: {{text}}'
   createLinks: 'Vytvořit odkazy: {{text}}'
@@ -147,3 +153,20 @@ scripturePane:
   copy: Copy text
   copied: Scripture copied
   openInLibrary: Open in JW Library
+referenceTable:
+  title: References
+  search: Search
+  uniqueOnly: Hide duplicates
+  copy: Copy as TSV
+  copied: Table copied
+  count: '{{count}} references'
+  empty: Nothing matches the search
+  columns:
+    original: Original
+    long: Full
+    medium: Standard
+    short: Official
+    startBcv: Start BCV
+    endBcv: End BCV
+    chapter: Chapter
+    verses: Verses

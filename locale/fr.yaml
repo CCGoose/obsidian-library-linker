@@ -95,6 +95,11 @@ commands:
   insertBibleQuotes: Insérer des citations bibliques pour les liens JW Library
   insertBibleQuoteAtCursor: Insérer une citation biblique au curseur
   openScripturePane: Open scripture in the side pane
+  parseDocument: Parse document into a reference table
+  parseSelection: Parse selection into a reference table
+  reformatLong: Reformat references to full book names
+  reformatMedium: Reformat references to standard book names
+  reformatShort: Reformat references to official book names
 convertSuggester:
   emptyStateText: Sélectionnez un type de conversion
   options:
@@ -120,6 +125,7 @@ notices:
   offlineBibleAlreadyInstalled: Une Bible hors ligne pour {{language}} est déjà installée. Supprimez-la d'abord pour la réimporter.
   offlineBibleImportFailed: Échec de l'importation de l'EPUB de la Bible hors ligne
   offlineBibleOpenFolderFailed: Impossible d'ouvrir le dossier de la Bible hors ligne
+  reformattedReferences: 'Reformatted {{count}} references'
 suggestions:
   createLink: 'Créer un lien : {{text}}'
   createLinks: 'Créer des liens : {{text}}'
@@ -147,3 +153,20 @@ scripturePane:
   copy: Copy text
   copied: Scripture copied
   openInLibrary: Open in JW Library
+referenceTable:
+  title: References
+  search: Search
+  uniqueOnly: Hide duplicates
+  copy: Copy as TSV
+  copied: Table copied
+  count: '{{count}} references'
+  empty: Nothing matches the search
+  columns:
+    original: Original
+    long: Full
+    medium: Standard
+    short: Official
+    startBcv: Start BCV
+    endBcv: End BCV
+    chapter: Chapter
+    verses: Verses

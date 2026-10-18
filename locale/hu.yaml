@@ -95,6 +95,11 @@ commands:
   insertBibleQuotes: Bibliai idézetek beszúrása a JW Library-hivatkozásokhoz
   insertBibleQuoteAtCursor: Bibliai idézet beszúrása a kurzorhoz
   openScripturePane: Open scripture in the side pane
+  parseDocument: Parse document into a reference table
+  parseSelection: Parse selection into a reference table
+  reformatLong: Reformat references to full book names
+  reformatMedium: Reformat references to standard book names
+  reformatShort: Reformat references to official book names
 convertSuggester:
   emptyStateText: Válassz átalakítási típust
   options:
@@ -120,6 +125,7 @@ notices:
   offlineBibleAlreadyInstalled: Már telepítve van offline Biblia {{language}} nyelvhez. Az újbóli importáláshoz először távolítsd el.
   offlineBibleImportFailed: A Biblia EPUB importálása nem sikerült
   offlineBibleOpenFolderFailed: Az offline Biblia mappáját nem sikerült megnyitni
+  reformattedReferences: 'Reformatted {{count}} references'
 suggestions:
   createLink: 'Hivatkozás létrehozása: {{text}}'
   createLinks: 'Hivatkozások létrehozása: {{text}}'
@@ -147,3 +153,20 @@ scripturePane:
   copy: Copy text
   copied: Scripture copied
   openInLibrary: Open in JW Library
+referenceTable:
+  title: References
+  search: Search
+  uniqueOnly: Hide duplicates
+  copy: Copy as TSV
+  copied: Table copied
+  count: '{{count}} references'
+  empty: Nothing matches the search
+  columns:
+    original: Original
+    long: Full
+    medium: Standard
+    short: Official
+    startBcv: Start BCV
+    endBcv: End BCV
+    chapter: Chapter
+    verses: Verses

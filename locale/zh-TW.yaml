@@ -95,6 +95,11 @@ commands:
   insertBibleQuotes: 為 JW Library 連結插入經文
   insertBibleQuoteAtCursor: 在游標處插入經文
   openScripturePane: 在側邊欄開啟經文
+  parseDocument: 把整篇筆記解析成引用表格
+  parseSelection: 把選取範圍解析成引用表格
+  reformatLong: 把引用轉成全名書卷名
+  reformatMedium: 把引用轉成標準書卷名
+  reformatShort: 把引用轉成官方書卷名
 convertSuggester:
   emptyStateText: 選擇轉換類型
   options:
@@ -120,6 +125,7 @@ notices:
   offlineBibleAlreadyInstalled: 已經安裝了 {{language}} 的離線聖經。要重新匯入，請先移除。
   offlineBibleImportFailed: 無法匯入離線聖經 EPUB
   offlineBibleOpenFolderFailed: 無法開啟離線聖經資料夾
+  reformattedReferences: '已轉換 {{count}} 個引用'
 suggestions:
   createLink: '建立連結：{{text}}'
   createLinks: '建立連結：{{text}}'
@@ -147,3 +153,20 @@ scripturePane:
   copy: 複製經文
   copied: 經文已複製
   openInLibrary: 在 JW Library 開啟
+referenceTable:
+  title: 引用列表
+  search: 搜尋
+  uniqueOnly: 隱藏重複
+  copy: 複製成 TSV
+  copied: 表格已複製
+  count: '{{count}} 個引用'
+  empty: 沒有符合搜尋的項目
+  columns:
+    original: 原文
+    long: 全名
+    medium: 標準
+    short: 官方
+    startBcv: 起始 BCV
+    endBcv: 結束 BCV
+    chapter: 章
+    verses: 節

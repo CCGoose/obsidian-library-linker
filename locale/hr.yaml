@@ -95,6 +95,11 @@ commands:
   insertBibleQuotes: Umetni biblijske citate za JW Library linkove
   insertBibleQuoteAtCursor: Umetni biblijski citat na položaj kursora
   openScripturePane: Open scripture in the side pane
+  parseDocument: Parse document into a reference table
+  parseSelection: Parse selection into a reference table
+  reformatLong: Reformat references to full book names
+  reformatMedium: Reformat references to standard book names
+  reformatShort: Reformat references to official book names
 convertSuggester:
   emptyStateText: Odaberite vrstu pretvorbe
   options:
@@ -120,6 +125,7 @@ notices:
   offlineBibleAlreadyInstalled: Izvanmrežna Biblija za {{language}} je već instalirana. Uklonite je prvo da biste je ponovno uvezli.
   offlineBibleImportFailed: Uvoz EPUB-a izvanmrežne Biblije nije uspio
   offlineBibleOpenFolderFailed: Nije moguće otvoriti mapu izvanmrežne Biblije
+  reformattedReferences: 'Reformatted {{count}} references'
 suggestions:
   createLink: 'Izradi link: {{text}}'
   createLinks: 'Izradi linkove: {{text}}'
@@ -147,3 +153,20 @@ scripturePane:
   copy: Copy text
   copied: Scripture copied
   openInLibrary: Open in JW Library
+referenceTable:
+  title: References
+  search: Search
+  uniqueOnly: Hide duplicates
+  copy: Copy as TSV
+  copied: Table copied
+  count: '{{count}} references'
+  empty: Nothing matches the search
+  columns:
+    original: Original
+    long: Full
+    medium: Standard
+    short: Official
+    startBcv: Start BCV
+    endBcv: End BCV
+    chapter: Chapter
+    verses: Verses

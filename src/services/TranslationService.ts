@@ -75,6 +75,11 @@ type Translation = {
     insertBibleQuotes: string;
     insertBibleQuoteAtCursor: string;
     openScripturePane: string;
+    parseDocument: string;
+    parseSelection: string;
+    reformatLong: string;
+    reformatMedium: string;
+    reformatShort: string;
   };
   convertSuggester: {
     emptyStateText: string;
@@ -97,6 +102,7 @@ type Translation = {
     offlineBibleAlreadyInstalled: string;
     offlineBibleImportFailed: string;
     offlineBibleOpenFolderFailed: string;
+    reformattedReferences: string;
   };
   suggestions: {
     createLink: string;
@@ -113,6 +119,25 @@ type Translation = {
     invalidVerseFormat: string;
     invalidReferenceFormat: string;
     unsupportedLanguage: string;
+  };
+  referenceTable: {
+    title: string;
+    search: string;
+    uniqueOnly: string;
+    copy: string;
+    copied: string;
+    count: string;
+    empty: string;
+    columns: {
+      original: string;
+      long: string;
+      medium: string;
+      short: string;
+      startBcv: string;
+      endBcv: string;
+      chapter: string;
+      verses: string;
+    };
   };
   scripturePane: {
     title: string;

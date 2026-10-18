@@ -95,6 +95,11 @@ commands:
   insertBibleQuotes: Bikapo amashiwi ya Baibolo pa malinki ya JW Library
   insertBibleQuoteAtCursor: Bikapo amashiwi ya Baibolo apo kasanika nshiba
   openScripturePane: Open scripture in the side pane
+  parseDocument: Parse document into a reference table
+  parseSelection: Parse selection into a reference table
+  reformatLong: Reformat references to full book names
+  reformatMedium: Reformat references to standard book names
+  reformatShort: Reformat references to official book names
 convertSuggester:
   emptyStateText: Salapo umusango wa kupyangulula
   options:
@@ -120,6 +125,7 @@ notices:
   offlineBibleAlreadyInstalled: 'Baibolo wa kunse kwa intaneti uwa {{language}} naulipo kale. Mufumyepo intaanshi ya kuleta nakabili.'
   offlineBibleImportFailed: Califilwa ukuleta Baibolo wa EPUB wa kunse kwa intaneti
   offlineBibleOpenFolderFailed: Te kwisula ifaila ya Baibolo wa kunse kwa intaneti
+  reformattedReferences: 'Reformatted {{count}} references'
 suggestions:
   createLink: 'Panga linki: {{text}}'
   createLinks: 'Panga amalinki: {{text}}'
@@ -147,3 +153,20 @@ scripturePane:
   copy: Copy text
   copied: Scripture copied
   openInLibrary: Open in JW Library
+referenceTable:
+  title: References
+  search: Search
+  uniqueOnly: Hide duplicates
+  copy: Copy as TSV
+  copied: Table copied
+  count: '{{count}} references'
+  empty: Nothing matches the search
+  columns:
+    original: Original
+    long: Full
+    medium: Standard
+    short: Official
+    startBcv: Start BCV
+    endBcv: End BCV
+    chapter: Chapter
+    verses: Verses

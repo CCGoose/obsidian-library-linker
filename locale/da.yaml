@@ -95,6 +95,11 @@ commands:
   insertBibleQuotes: Indsæt bibelcitater for JW Library-links
   insertBibleQuoteAtCursor: Indsæt bibelcitat ved markøren
   openScripturePane: Open scripture in the side pane
+  parseDocument: Parse document into a reference table
+  parseSelection: Parse selection into a reference table
+  reformatLong: Reformat references to full book names
+  reformatMedium: Reformat references to standard book names
+  reformatShort: Reformat references to official book names
 convertSuggester:
   emptyStateText: Vælg en konverteringstype
   options:
@@ -120,6 +125,7 @@ notices:
   offlineBibleAlreadyInstalled: Der er allerede installeret en offline-bibel for {{language}}. Fjern den først for at importere igen.
   offlineBibleImportFailed: Kunne ikke importere offline-bibelens EPUB
   offlineBibleOpenFolderFailed: Kunne ikke åbne mappen til offline-bibel
+  reformattedReferences: 'Reformatted {{count}} references'
 suggestions:
   createLink: 'Opret link: {{text}}'
   createLinks: 'Opret links: {{text}}'
@@ -147,3 +153,20 @@ scripturePane:
   copy: Copy text
   copied: Scripture copied
   openInLibrary: Open in JW Library
+referenceTable:
+  title: References
+  search: Search
+  uniqueOnly: Hide duplicates
+  copy: Copy as TSV
+  copied: Table copied
+  count: '{{count}} references'
+  empty: Nothing matches the search
+  columns:
+    original: Original
+    long: Full
+    medium: Standard
+    short: Official
+    startBcv: Start BCV
+    endBcv: End BCV
+    chapter: Chapter
+    verses: Verses

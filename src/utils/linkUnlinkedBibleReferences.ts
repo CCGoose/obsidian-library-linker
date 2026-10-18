@@ -1,8 +1,6 @@
-import { parseBibleReference } from '@/utils/parseBibleReference';
 import { convertBibleTextToMarkdownLink } from '@/utils/convertBibleTextToMarkdownLink';
-import type { BibleReference, LinkReplacerSettings } from '@/types';
-import { buildBookNameRegex } from '@/utils/buildBookNameRegex';
-import { logger } from '@/utils/logger';
+import type { LinkReplacerSettings } from '@/types';
+import { collectBibleReferences } from '@/utils/collectBibleReferences';
 
 type Change = {
   from: { line: number; ch: number };
@@ -15,42 +13,8 @@ export function linkUnlinkedBibleReferences(
   settings: LinkReplacerSettings,
   callback: (settings: { changes: Change[]; error: string | undefined }) => void,
 ): void {
-  const lines = currentContent.split('\n');
-  const regex = buildBookNameRegex(settings.language);
-
-  const foundReferences: {
-    line: number;
-    index: number;
-    text: string;
-    reference: BibleReference;
-  }[] = [];
-
-  // Scan each line for Bible references using the findBibleReferenceRegex
-  lines.forEach((line, lineIndex) => {
-    let match;
-    regex.lastIndex = 0;
-    while ((match = regex.exec(line)) !== null) {
-      // check if match is already a link
-      if (line.includes(`[${match[0]}]`)) {
-        continue;
-      }
-
-      try {
-        const reference = parseBibleReference(match[0], settings.language);
-        if (reference) {
-          foundReferences.push({
-            line: lineIndex,
-            index: match.index,
-            text: match[0],
-            reference: reference,
-          });
-        }
-      } catch {
-        logger.error('Invalid reference', { line, match, lineIndex });
-        // Skip invalid references
-        continue;
-      }
-    }
+  const foundReferences = collectBibleReferences(currentContent, settings.language, {
+    skipLinked: true,
   });
 
   if (foundReferences.length === 0) {
@@ -61,13 +25,7 @@ export function linkUnlinkedBibleReferences(
     return;
   }
 
-  // Sort references by position (line ascending, then index within line ascending)
-  // This ensures we process them in document order
-  const sortedRefs = [...foundReferences].sort((a, b) =>
-    a.line === b.line ? a.index - b.index : a.line - b.line,
-  );
-
-  const changes = sortedRefs
+  const changes = foundReferences
     .map((ref) => {
       const convertedLink = convertBibleTextToMarkdownLink(ref.reference, settings, ref.text);
 

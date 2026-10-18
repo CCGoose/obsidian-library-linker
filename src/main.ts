@@ -1,6 +1,12 @@
 import { Editor, Notice, Plugin, Menu } from 'obsidian';
 import { ConversionType, convertLinks } from '@/utils/convertLinks';
-import type { BibleReference, LinkReplacerSettings, LinkStyles, BibleQuoteFormat } from '@/types';
+import type {
+  BibleReference,
+  BookLength,
+  LinkReplacerSettings,
+  LinkStyles,
+  BibleQuoteFormat,
+} from '@/types';
 import { BIBLE_QUOTE_TEMPLATES } from '@/types';
 import { TranslationService } from '@/services/TranslationService';
 import { VaultOfflineBibleRepository } from '@/services/VaultOfflineBibleRepository';
@@ -18,6 +24,9 @@ import { ConvertSuggester } from '@/ConvertSuggester';
 import { insertAllBibleQuotes, insertBibleQuoteAtCursor } from '@/utils/insertBibleQuotes';
 import { findJWLibraryLinksInLine, parseJWLibraryLink } from '@/utils/findJWLibraryLinks';
 import { ScripturePaneView, SCRIPTURE_PANE_VIEW_TYPE } from '@/views/ScripturePaneView';
+import { ReferenceTableView, REFERENCE_TABLE_VIEW_TYPE } from '@/views/ReferenceTableView';
+import { collectBibleReferences } from '@/utils/collectBibleReferences';
+import { reformatBibleReferences } from '@/utils/reformatBibleReferences';
 import { logger } from '@/utils/logger';
 import { getBookLanguage } from '@/utils/signLanguage';
 import { ContentSelection } from '@/utils/findJWLibraryLinks';
@@ -264,6 +273,46 @@ export default class JWLibraryLinkerPlugin extends Plugin {
       },
     });
 
+    this.registerView(REFERENCE_TABLE_VIEW_TYPE, (leaf) => new ReferenceTableView(leaf, this));
+
+    this.addCommand({
+      id: 'parse-document-references',
+      name: this.t('commands.parseDocument'),
+      icon: 'table',
+      editorCallback: (editor: Editor) => {
+        void this.showReferenceTable(editor.getValue(), 0);
+      },
+    });
+
+    this.addCommand({
+      id: 'parse-selection-references',
+      name: this.t('commands.parseSelection'),
+      icon: 'table',
+      editorCallback: (editor: Editor) => {
+        const selection = editor.getSelection();
+        if (!selection) {
+          new Notice(this.t('notices.pleaseSelectText'));
+          return;
+        }
+        void this.showReferenceTable(selection, editor.getCursor('from').line);
+      },
+    });
+
+    const reformatLengths: { id: string; length: BookLength; key: string }[] = [
+      { id: 'reformat-references-long', length: 'long', key: 'commands.reformatLong' },
+      { id: 'reformat-references-medium', length: 'medium', key: 'commands.reformatMedium' },
+      { id: 'reformat-references-short', length: 'short', key: 'commands.reformatShort' },
+    ];
+
+    for (const { id, length, key } of reformatLengths) {
+      this.addCommand({
+        id,
+        name: this.t(key),
+        icon: 'replace',
+        editorCallback: (editor: Editor) => this.reformatReferences(editor, length),
+      });
+    }
+
     this.bibleSuggester = new BibleReferenceSuggester(this);
     this.registerEditorSuggest(this.bibleSuggester);
 
@@ -328,6 +377,63 @@ export default class JWLibraryLinkerPlugin extends Plugin {
     });
 
     logger.log('Plugin loaded');
+  }
+
+  /**
+   * `lineOffset` maps the positions found in a selection back onto the document,
+   * so clicking a row jumps to the right line.
+   */
+  async showReferenceTable(content: string, lineOffset: number): Promise<void> {
+    const found = collectBibleReferences(content, this.settings.language).map((item) => ({
+      ...item,
+      line: item.line + lineOffset,
+    }));
+
+    if (found.length === 0) {
+      new Notice(this.t('notices.noBibleReferencesFound'));
+      return;
+    }
+
+    const { workspace } = this.app;
+    let leaf = workspace.getLeavesOfType(REFERENCE_TABLE_VIEW_TYPE)[0];
+    if (!leaf) {
+      leaf = workspace.getRightLeaf(false) ?? workspace.getLeaf(true);
+      await leaf.setViewState({ type: REFERENCE_TABLE_VIEW_TYPE, active: true });
+    }
+    await workspace.revealLeaf(leaf);
+
+    const view = leaf.view;
+    if (view instanceof ReferenceTableView) {
+      view.showReferences(found);
+    }
+  }
+
+  private reformatReferences(editor: Editor, bookLength: BookLength): void {
+    const selection = editor.getSelection();
+    const offset = selection ? editor.getCursor('from') : { line: 0, ch: 0 };
+    const content = selection || editor.getValue();
+
+    const changes = reformatBibleReferences(content, this.settings.language, bookLength).map(
+      (change) => ({
+        ...change,
+        from: {
+          line: change.from.line + offset.line,
+          ch: change.from.line === 0 ? change.from.ch + offset.ch : change.from.ch,
+        },
+        to: {
+          line: change.to.line + offset.line,
+          ch: change.to.line === 0 ? change.to.ch + offset.ch : change.to.ch,
+        },
+      }),
+    );
+
+    if (changes.length === 0) {
+      new Notice(this.t('notices.noBibleReferencesFound'));
+      return;
+    }
+
+    editor.transaction({ changes });
+    new Notice(this.t('notices.reformattedReferences', { count: String(changes.length) }));
   }
 
   async openScripturePane(reference: BibleReference): Promise<void> {
