@@ -46,6 +46,7 @@ type Translation = {
         expanded: string;
       };
       template: { name: string; description: string };
+      insertOnLink: { name: string; description: string };
       preview: { name: string };
     };
     offlineBible: {

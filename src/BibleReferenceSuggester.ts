@@ -4,7 +4,9 @@ import {
   EditorSuggest,
   EditorSuggestContext,
   EditorSuggestTriggerInfo,
+  Notice,
 } from 'obsidian';
+import { insertBibleQuoteAtCursor } from '@/utils/insertBibleQuotes';
 import type { BibleReference, BibleSuggestion } from '@/types';
 import { formatBibleText } from '@/utils/formatBibleText';
 import { parseBibleReference, extractBibleReferenceFromMatch } from '@/utils/parseBibleReference';
@@ -197,6 +199,22 @@ export class BibleReferenceSuggester extends EditorSuggest<BibleSuggestion> {
     el.setText(suggestion.description);
   }
 
+  private async insertQuoteForNewLink(editor: Editor): Promise<void> {
+    try {
+      const result = await insertBibleQuoteAtCursor(
+        editor,
+        this.plugin.settings,
+        this.plugin.getBibleCitationProvider(),
+      );
+      if (result.fetchFailed) {
+        new Notice(this.t('notices.bibleQuoteFetchFailed'));
+      }
+    } catch (error) {
+      logger.error('Error inserting Bible quote after creating a link:', error);
+      new Notice(this.t('notices.errorInsertingQuotes'));
+    }
+  }
+
   selectSuggestion(suggestion: BibleSuggestion): void {
     if (!this.context) return;
 
@@ -220,6 +238,12 @@ export class BibleReferenceSuggester extends EditorSuggest<BibleSuggestion> {
 
     // Force close the suggestion box to prevent it from staying open with italic formatting
     this.close();
+
+    // Insert the quote for the link that was just written, so the user does not
+    // have to run the insert command separately
+    if (this.plugin.settings.bibleQuote.insertOnLink) {
+      void this.insertQuoteForNewLink(editor);
+    }
 
     // Handle opening links
     if (suggestion.command === 'open') {

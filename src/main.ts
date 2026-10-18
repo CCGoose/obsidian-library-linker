@@ -37,6 +37,7 @@ export const DEFAULT_SETTINGS: LinkReplacerSettings = {
   reconvertExistingLinks: false,
   bibleQuote: {
     template: BIBLE_QUOTE_TEMPLATES.short,
+    insertOnLink: false,
   },
   offlineBible: {
     enabled: true,

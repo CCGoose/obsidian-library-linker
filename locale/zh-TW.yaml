@@ -61,6 +61,9 @@ settings:
     template:
       name: 經文範本
       description: '用這些變數自訂經文格式：{bibleRef}、{bibleRefLinked}、{quote}'
+    insertOnLink:
+      name: 建立連結時一併插入經文
+      description: 啟用後，從建議清單建立連結時會直接把經文插在連結後面，不必另外執行插入指令。
     preview:
       name: 經文預覽
   offlineBible:

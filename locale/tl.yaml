@@ -61,6 +61,9 @@ settings:
     template:
       name: Template ng sipi
       description: 'I-customize ang format ng sipi gamit ang mga variable: {bibleRef}, {bibleRefLinked}, {quote}'
+    insertOnLink:
+      name: Insert quote when creating a link
+      description: When enabled, picking a suggestion inserts the Bible quote right after the new link, so no separate command is needed.
     preview:
       name: Preview ng sipi sa Bibliya
   offlineBible:

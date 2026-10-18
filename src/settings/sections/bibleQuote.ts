@@ -43,6 +43,18 @@ export function getBibleQuoteDefinitions(tab: SettingsTabContext): SettingDefini
         },
       },
       {
+        name: tab.t('settings.bibleQuote.insertOnLink.name'),
+        desc: tab.t('settings.bibleQuote.insertOnLink.description'),
+        render: (setting): void => {
+          setting.addToggle((toggle) =>
+            toggle.setValue(tab.plugin.settings.bibleQuote.insertOnLink).onChange(async (value) => {
+              tab.plugin.settings.bibleQuote.insertOnLink = value;
+              await tab.plugin.saveSettings();
+            }),
+          );
+        },
+      },
+      {
         name: tab.t('settings.bibleQuote.presets.name'),
 
         render: (setting): void => {

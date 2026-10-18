@@ -61,6 +61,9 @@ settings:
     template:
       name: 인용문 템플릿
       description: '변수를 사용하여 인용문 형식을 사용자 정의하세요: {bibleRef}, {bibleRefLinked}, {quote}'
+    insertOnLink:
+      name: Insert quote when creating a link
+      description: When enabled, picking a suggestion inserts the Bible quote right after the new link, so no separate command is needed.
     preview:
       name: 성경 인용문 미리보기
   offlineBible:
