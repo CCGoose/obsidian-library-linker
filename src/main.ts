@@ -264,12 +264,21 @@ export default class JWLibraryLinkerPlugin extends Plugin {
       icon: 'book-open',
       editorCallback: (editor: Editor) => {
         const cursor = editor.getCursor();
-        const links = findJWLibraryLinksInLine(editor.getLine(cursor.line), cursor.line);
-        if (links.length === 0) {
-          new Notice(this.t('notices.noBibleLinkAtCursor'));
-          return;
+        // A quote sits under its link, so the cursor is often a line away from it.
+        // Look at the neighbours too, the way inserting a quote at the cursor does.
+        const candidates = [cursor.line, cursor.line - 1, cursor.line + 1].filter(
+          (line) => line >= 0 && line <= editor.lastLine(),
+        );
+
+        for (const line of candidates) {
+          const links = findJWLibraryLinksInLine(editor.getLine(line), line);
+          if (links.length > 0) {
+            void this.openScripturePane(links[0].reference);
+            return;
+          }
         }
-        void this.openScripturePane(links[0].reference);
+
+        new Notice(this.t('notices.noBibleLinkAtCursor'));
       },
     });
 

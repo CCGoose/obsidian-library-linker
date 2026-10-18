@@ -26,12 +26,16 @@ built and installed by hand.
 
 ```sh
 pnpm install
-pnpm test     # lint, types, vitest
-pnpm build    # writes main.js
-cp main.js manifest.json styles.css "<vault>/.obsidian/plugins/jw-library-linker/"
+pnpm test            # lint, types, vitest
+pnpm install:vaults  # builds, then copies into every vault listed in the script
 ```
 
-Then reload the plugin in Obsidian (Settings → Community plugins, toggle it off and on).
+Obsidian loads a plugin from inside the vault, and each vault keeps its own copy, so both
+are updated together or they drift apart. The vaults are listed at the top of
+`scripts/install-vaults.sh`; add one there rather than copying by hand. Settings are
+per-vault, so a newly added vault needs its language set again.
+
+Then reload the plugin in each vault (Settings → Community plugins, toggle it off and on).
 
 Installing from the community plugin browser overwrites this build with upstream's, so
 rebuild after any update.
