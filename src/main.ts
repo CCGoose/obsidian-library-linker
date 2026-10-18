@@ -360,21 +360,46 @@ export default class JWLibraryLinkerPlugin extends Plugin {
 
     // Cmd/Ctrl+click on a JW Library link reads it in the side pane instead of
     // handing it to JW Library, which a plain click still does.
-    this.registerDomEvent(document, 'click', (event: MouseEvent) => {
-      if (!event.metaKey && !event.ctrlKey) return;
+    //
+    // Obsidian opens external links from its own listeners, so these run in the
+    // capture phase and stop the event before it reaches them. Mousedown is where
+    // the editor starts following a link, so it has to be cancelled there too.
+    const jwLinkReference = (event: MouseEvent): BibleReference | null => {
+      if (!event.metaKey && !event.ctrlKey) return null;
 
       const target = event.target as HTMLElement | null;
       const anchor = target?.closest('a');
-      const href = anchor?.getAttribute('href');
-      if (!href?.startsWith('jwlibrary:///finder?bible=')) return;
+      const href = anchor?.getAttribute('href') ?? anchor?.dataset.href;
+      if (!href?.startsWith('jwlibrary:///finder?bible=')) return null;
 
-      const reference = parseJWLibraryLink(href);
-      if (!reference) return;
+      return parseJWLibraryLink(href);
+    };
 
-      event.preventDefault();
-      event.stopPropagation();
-      void this.openScripturePane(reference);
-    });
+    this.registerDomEvent(
+      document,
+      'mousedown',
+      (event: MouseEvent) => {
+        if (jwLinkReference(event)) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+        }
+      },
+      { capture: true },
+    );
+
+    this.registerDomEvent(
+      document,
+      'click',
+      (event: MouseEvent) => {
+        const reference = jwLinkReference(event);
+        if (!reference) return;
+
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        void this.openScripturePane(reference);
+      },
+      { capture: true },
+    );
 
     logger.log('Plugin loaded');
   }
