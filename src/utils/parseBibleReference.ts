@@ -95,6 +95,10 @@ export function parseBibleReference(input: string, language: Language): BibleRef
   input = input
     .trim()
     .toLowerCase()
+    // Chinese and Japanese input methods type these as fullwidth or en-dash forms
+    .replace(/：/g, ':')
+    .replace(/，/g, ',')
+    .replace(/[－–]/g, '-')
     .replace(/[.\s]/g, '')
     .replace(/(\p{L})-(?=\p{L})/gu, '$1');
 

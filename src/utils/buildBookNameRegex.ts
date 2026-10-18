@@ -61,11 +61,13 @@ export function buildBookNameRegex(language: Language): RegExp {
   const bookPattern = uniqueNames.map(escapeRegex).join('|');
 
   // Build full regex: book name + optional dot/space + chapter:verse pattern
-  const chapterVersePattern = '\\.?\\s?\\d+:\\d+(?:-\\d+(?::\\d+)?)?(?:\\s*,\\s*\\d+(?:-\\d+)?)*';
+  // Fullwidth colon/comma and en dash are what Chinese input methods produce
+  const chapterVersePattern =
+    '\\.?\\s?\\d+[:：]\\d+(?:[-–－]\\d+(?:[:：]\\d+)?)?(?:\\s*[,，]\\s*\\d+(?:[-–－]\\d+)?)*';
 
   // Single-chapter books also match verse-only format (e.g., "Jude 3", "Judas 1-5")
   const singleChapterBookPattern = uniqueSingleChapterNames.map(escapeRegex).join('|');
-  const verseOnlyPattern = '\\.?\\s?\\d+(?:-\\d+)?(?:\\s*,\\s*\\d+(?:-\\d+)?)*';
+  const verseOnlyPattern = '\\.?\\s?\\d+(?:[-–－]\\d+)?(?:\\s*[,，]\\s*\\d+(?:[-–－]\\d+)?)*';
 
   // Combine: (any book + chapter:verse) OR (single-chapter book + verse-only)
   // chapter:verse pattern listed first so "Jude 1:3" matches fully rather than just "Jude 1"
