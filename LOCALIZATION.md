@@ -2,28 +2,29 @@
 
 ## Supported Languages
 
-| Code | Language                          |
-| ---- | --------------------------------- |
-| B    | čeština / Czech                   |
-| C    | hrvatski / Croatian               |
-| CW   | Cibemba / Cibemba                 |
-| D    | Dansk / Danish                    |
-| E    | English / English                 |
-| F    | français / French                 |
-| FI   | suomi / Finnish                   |
-| H    | magyar / Hungarian                |
-| I    | Italiano / Italian                |
-| IN   | Bahasa Indonesia / Indonesian     |
-| J    | 日本語 / Japanese                    |
-| KO   | 한국어 / Korean                      |
-| N    | Norsk / Norwegian                 |
-| O    | Nederlands / Dutch                |
-| S    | español / Spanish                 |
-| TG   | Tagalog / Tagalog                 |
-| TPO  | português / Portuguese (Portugal) |
-| U    | русский / Russian                 |
-| VT   | Tiếng Việt / Vietnamese           |
-| X    | Deutsch / German                  |
+| Code | Language                                  |
+| ---- | ----------------------------------------- |
+| B    | čeština / Czech                           |
+| C    | hrvatski / Croatian                       |
+| CH   | 中文繁體（國語） / Chinese Mandarin (Traditional) |
+| CW   | Cibemba / Cibemba                         |
+| D    | Dansk / Danish                            |
+| E    | English / English                         |
+| F    | français / French                         |
+| FI   | suomi / Finnish                           |
+| H    | magyar / Hungarian                        |
+| I    | Italiano / Italian                        |
+| IN   | Bahasa Indonesia / Indonesian             |
+| J    | 日本語 / Japanese                            |
+| KO   | 한국어 / Korean                              |
+| N    | Norsk / Norwegian                         |
+| O    | Nederlands / Dutch                        |
+| S    | español / Spanish                         |
+| TG   | Tagalog / Tagalog                         |
+| TPO  | português / Portuguese (Portugal)         |
+| U    | русский / Russian                         |
+| VT   | Tiếng Việt / Vietnamese                   |
+| X    | Deutsch / German                          |
 
 ### Sign Languages
 

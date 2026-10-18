@@ -549,6 +549,15 @@
     "isRTL": false
   },
   {
+    "code": "CH",
+    "locale": "cmn-Hant",
+    "vernacular": "中文繁體（國語）",
+    "script": "CHINESE",
+    "name": "Chinese Mandarin (Traditional)",
+    "isSignLanguage": false,
+    "isRTL": false
+  },
+  {
     "code": "INI",
     "locale": "inl",
     "vernacular": "Bahasa Isyarat Indonesia",

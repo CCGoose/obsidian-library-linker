@@ -3,7 +3,6 @@ import type {
   BibleImportResult,
   EpubImportService,
   Language,
-  Locale,
   OfflineBibleChapter,
   OfflineBibleCorpusMetadata,
   OfflineBibleRepository,
@@ -229,7 +228,7 @@ export class BibleEpubImportService implements EpubImportService {
       return undefined;
     }
 
-    return getLanguageFromLocale(locale as Locale);
+    return getLanguageFromLocale(locale);
   }
 
   private readModifiedAt(packageDoc: Document): string | undefined {

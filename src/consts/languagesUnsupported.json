@@ -1485,15 +1485,6 @@
     "isRTL": false
   },
   {
-    "code": "CH",
-    "locale": "cmn-Hant",
-    "vernacular": "中文繁體（國語）",
-    "script": "CHINESE",
-    "name": "Chinese Mandarin (Traditional)",
-    "isSignLanguage": false,
-    "isRTL": false
-  },
-  {
     "code": "CSL",
     "locale": "csl",
     "vernacular": "中国手语",

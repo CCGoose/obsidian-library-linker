@@ -2,6 +2,9 @@ interface CleanHtmlTextOptions {
   removeFootnoteMarkers?: boolean;
 }
 
+// CJK ideographs plus CJK/fullwidth punctuation (。、「」，：etc.)
+const CJK = '[\\u3400-\\u4DBF\\u4E00-\\u9FFF\\u3000-\\u303F\\uFF00-\\uFFEF]';
+
 /**
  * Removes HTML tags and decodes HTML entities from a string.
  * This function uses native browser APIs to safely clean HTML content
@@ -30,6 +33,11 @@ export function cleanHtmlText(html: string, options: CleanHtmlTextOptions = {}):
   }
 
   text = text.replace(/\s+/g, ' '); // Normalize whitespace
+
+  // Tags are replaced with spaces so words don't concatenate, but CJK text is not
+  // space-separated, so a space between two CJK characters is an artifact. Only drop
+  // it when both sides are CJK, leaving CJK/Latin boundaries (e.g. names) untouched.
+  text = text.replace(new RegExp(`(${CJK})\\s+(?=${CJK})`, 'g'), '$1');
 
   // Fix spacing issues where sentences are concatenated without spaces after periods
   const result = text

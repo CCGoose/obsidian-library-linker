@@ -4,6 +4,7 @@ import languageJson from '@/consts/languages.json';
 // obsidian language
 export const LOCALES = [
   'bem',
+  'cmn-Hant',
   'cs',
   'da',
   'de',
@@ -29,6 +30,7 @@ export const LOCALES = [
 export const LANGUAGE_CODES = [
   'B',
   'C',
+  'CH',
   'CW',
   'D',
   'E',

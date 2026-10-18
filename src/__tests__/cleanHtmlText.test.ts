@@ -175,5 +175,15 @@ describe('cleanHtmlText', () => {
       const html = '<p>First sentence.</p><p>Second sentence.</p>';
       expect(cleanHtmlText(html)).toBe('First sentence. Second sentence.');
     });
+
+    it('should not leave spaces between CJK characters where tags were removed', () => {
+      const html = '讓所有信從<a epub:type="noteref" href="#footnote22">*</a>他的人<span></span>。';
+      expect(cleanHtmlText(html)).toBe('讓所有信從他的人。');
+    });
+
+    it('should keep spaces between CJK and Latin text', () => {
+      const html = '<p>上帝 Jehovah 說</p>';
+      expect(cleanHtmlText(html)).toBe('上帝 Jehovah 說');
+    });
   });
 });

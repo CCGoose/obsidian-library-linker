@@ -1,0 +1,136 @@
+settings:
+  language:
+    name: 語言
+    description: 選擇經文引用所用的語言
+  openAutomatically:
+    name: 自動開啟連結
+    description: 把「建立連結並開啟」移到清單最上面
+  updatedLinkStructure:
+    name: 保留連結文字
+    description: 啟用後，轉換經文時會保留現有的連結文字
+    keepCurrentStructure: 保留現有格式
+    usePluginSettings: 使用外掛設定
+  noLanguageParameter:
+    name: 建立不指定語言的連結
+    description: 啟用後，連結不會帶語言參數，會以 JW Library 本身的語言開啟
+  reconvertExistingLinks:
+    name: 重新轉換現有連結
+    description: 啟用後，已轉換的 jwlibrary:// 連結會依照目前的格式設定重新轉換，讓所有連結符合你最新的偏好。
+  bookLength:
+    name: 連結文字長度
+    description: 選擇連結文字的長度
+    short: 短
+    medium: 中
+    long: 長
+  linkStyling:
+    name: 連結樣式
+    description: 選擇要加在連結前後或連結內的字元或表情符號，以及字體樣式
+    reset: '還原預設值：「{{default}}」'
+    prefixOutsideLink:
+      name: 連結外前綴
+      description: 加在連結前面的文字
+    prefixInsideLink:
+      name: 連結內前綴
+      description: 加在連結文字開頭的文字
+    suffixInsideLink:
+      name: 連結內後綴
+      description: 加在連結文字結尾的文字
+    suffixOutsideLink:
+      name: 連結外後綴
+      description: 加在連結後面的文字
+    presets:
+      name: 樣式預設
+      description: 選擇連結的預設樣式
+    fontStyle:
+      name: 字體樣式
+      description: 選擇連結文字的字體樣式
+      normal: 一般
+      italic: 斜體
+      bold: 粗體
+    preview:
+      name: 連結預覽
+  bibleQuote:
+    name: 經文引用格式
+    description: 設定插入經文時的呈現格式
+    presets:
+      name: 範本預設
+      short: 連結加經文
+      plain: 連結在引言內
+      foldable: 可摺疊的標註
+      expanded: 展開的標註
+    template:
+      name: 經文範本
+      description: '用這些變數自訂經文格式：{bibleRef}、{bibleRefLinked}、{quote}'
+    preview:
+      name: 經文預覽
+  offlineBible:
+    name: 離線聖經
+    description: 匯入一次聖經 EPUB，之後就能用本機的章節資料離線查閱經文。
+    enabled:
+      name: 啟用離線聖經
+      description: 允許引用流程使用已匯入的本機聖經資料。
+    preferOffline:
+      name: 優先使用離線經文
+      description: 先查已匯入的離線聖經，再嘗試線上取得。
+    allowOnlineFallback:
+      name: 允許改用線上
+      description: 離線資料缺少時，允許外掛改用線上的經文來源。
+    installedList:
+      name: 已安裝的離線聖經
+      description: 每種語言可安裝一本離線聖經。語言是從 EPUB 的中繼資料判讀的。
+      empty: 尚未安裝任何離線聖經。
+      entry: '{{sourceFileName}} — {{chapterCount}} 章，匯入於 {{importedAt}}'
+    actions:
+      name: 離線聖經操作
+      description: 匯入 EPUB 以新增語言。要更換現有的，請先移除。
+      import: 匯入聖經 EPUB
+      importing: 匯入中…
+      openFolder: 開啟離線聖經資料夾
+commands:
+  linkUnlinkedBibleReferences: 為未連結的經文引用建立連結
+  convertToJWLibraryLinks: 把選取範圍的連結轉成 JW Library 連結
+  insertBibleQuotes: 為 JW Library 連結插入經文
+  insertBibleQuoteAtCursor: 在游標處插入經文
+convertSuggester:
+  emptyStateText: 選擇轉換類型
+  options:
+    all: 全部
+    bible: 經文引用
+    publication: 出版物
+contextMenu:
+  insertBibleQuote: 插入經文
+notices:
+  convertedBibleReferences: 已轉換 {{count}} 個經文引用
+  pleaseSelectText: 請先選取要轉換的文字
+  noBibleReferencesFound: 找不到經文引用
+  bibleQuotesInserted: 經文已插入
+  bibleQuotesInsertedSelection: 已為選取範圍插入經文
+  bibleQuoteInsertedAtCursor: 已在游標處插入經文
+  noBibleLinksFound: 找不到 JW Library 連結
+  noBibleLinkAtCursor: 游標處沒有 JW Library 連結
+  bibleQuoteAlreadyExists: 經文已經存在
+  errorInsertingQuotes: 插入經文時發生錯誤
+  bibleQuoteFetchFailed: 無法取得經文，請再試一次
+  offlineBibleImported: 已匯入 {{language}} 的離線聖經
+  offlineBibleRemoved: 已移除 {{language}} 的離線聖經
+  offlineBibleAlreadyInstalled: 已經安裝了 {{language}} 的離線聖經。要重新匯入，請先移除。
+  offlineBibleImportFailed: 無法匯入離線聖經 EPUB
+  offlineBibleOpenFolderFailed: 無法開啟離線聖經資料夾
+suggestions:
+  createLink: '建立連結：{{text}}'
+  createLinks: '建立連結：{{text}}'
+  createAndOpen: '建立連結並開啟：{{text}}'
+  createMultipleAndOpenFirst: '建立連結並開啟第一個：{{text}}'
+  typing: '輸入經文引用：{{text}}'
+  typingEmpty: 輸入經文引用
+errors:
+  invalidVerseNumber: 節數無效
+  versesAscendingOrder: 節數必須由小到大排列
+  chaptersAscendingOrder: 章數必須由小到大排列
+  invalidVerseFormat: 節數格式無效
+  invalidReferenceFormat: 引用格式無效
+  unsupportedLanguage: 不支援這個語言
+  offlineBibleNotInstalled: 尚未安裝 {{language}} 的離線聖經。請在設定中匯入聖經 EPUB 以啟用離線經文。
+  offlineBibleVerseMissing: 在 {{language}} 的離線聖經中找不到或無法讀取所要的經文。
+  offlineBibleLookupFailed: 離線聖經查閱失敗。
+  onlineFallbackDisabled: 已停用改用線上的功能。
