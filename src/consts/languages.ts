@@ -4,7 +4,6 @@ import languageJson from '@/consts/languages.json';
 // obsidian language
 export const LOCALES = [
   'bem',
-  'cmn-Hant',
   'cs',
   'da',
   'de',
@@ -24,6 +23,7 @@ export const LOCALES = [
   'ru',
   'tl',
   'vi',
+  'zh-TW',
 ] as const;
 
 // plugin language
