@@ -274,6 +274,8 @@ export function parseBibleReference(input: string, language: Language): BibleRef
   };
 }
 
+const CJK_CHAR = /^[\u3400-\u9fff]/u;
+
 /**
  * Attempts to parse a Bible reference from a regex match that may contain leading words.
  * Progressively trims leading words until a valid book name is found.
@@ -292,9 +294,11 @@ export function extractBibleReferenceFromMatch(
       return { text, offset, reference };
     } catch {
       const spaceIdx = text.search(/\s/);
-      if (spaceIdx === -1) return null;
-      offset += spaceIdx + 1;
-      text = text.substring(spaceIdx + 1);
+      // Chinese has no spaces between words, so "讀出士師記13:1" is trimmed one character at a time
+      const step = spaceIdx !== -1 ? spaceIdx + 1 : CJK_CHAR.test(text) ? 1 : 0;
+      if (step === 0) return null;
+      offset += step;
+      text = text.substring(step);
     }
   }
 

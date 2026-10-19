@@ -1,6 +1,6 @@
 import { initializeTestBibleBooks } from './__helpers__/initializeBibleBooksForTests';
 import { collectBibleReferences } from '@/utils/collectBibleReferences';
-import { parseBibleReference } from '@/utils/parseBibleReference';
+import { extractBibleReferenceFromMatch, parseBibleReference } from '@/utils/parseBibleReference';
 
 describe('Chinese punctuation and variant characters', () => {
   beforeAll(() => initializeTestBibleBooks());
@@ -36,5 +36,15 @@ describe('Chinese punctuation and variant characters', () => {
 
   test('keeps reading the ASCII forms the same way', () => {
     expect(texts('箴言27:11 和 約伯記38:5')).toEqual(['箴言27:11', '約伯記38:5']);
+  });
+
+  test('trims words glued in front of a book name when there are no spaces', () => {
+    const result = extractBibleReferenceFromMatch('讀出士師記13:1-2', 'CH');
+    expect(result?.text).toBe('士師記13:1-2');
+    expect(result?.offset).toBe(2);
+  });
+
+  test('still returns null for text with no reference at all', () => {
+    expect(extractBibleReferenceFromMatch('讀出大家13:1', 'CH')).toBeNull();
   });
 });
